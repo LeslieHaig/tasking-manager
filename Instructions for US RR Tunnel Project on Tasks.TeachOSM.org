@@ -1,0 +1,28 @@
+Part I - Creating an AOI for the Railroad Tunnel Open Source Mapping Initiative
+The AOI for this project is defined as 150 feet around the Colorado railroad network. This is the area, that after selecting the specific task grid, the user will be guided to look for tunnels. The size of the determined AOI is defined to be small enough to allow the user scanning a smaller area and complete the task within a reasonable time, while including all the possible areas for the features of interest – in this case, railroad tunnels. 
+The base layer the AOI is created on is the openly available railroad layer from the National Transportation Atlas Database (NTAD) and can be downloaded here: Geospatial at the Bureau of Transportation Statistics : North American Rail Lines (arcgis.com)
+or used as a service: https://geo.dot.gov/server/rest/services/NTAD/North_American_Rail_Lines/MapServer/0
+Proceeding the Data and Creating the AOI
+1.	Download and open the layer in ArcGIS Pro. 
+2.	For this project we removed all lines that are “Rail ferry connection” and lines that are “Abandoned line that has been physically removed” in the NET Domain field. (full metadata is here: North American Rail Lines (National) - National Geospatial Data Asset (NGDA) North American Rail Lines (arcgis.com) ). 
+3.	Separate the state for the specific project into a new layer, using the STFIPS field. 
+4.	Buffer the state layer with the following properties: 
+•	Distance = 150 feet
+•	Side Type = Full
+•	End Type = Round
+•	Method = Planar
+•	Dissolve Type = Dissolve all output features into a single feature
+5.	Share the buffer as a web layer to a personal AGOL/Portal account
+6.	The buffer created will be streamed as a service and used as the AOI background layer. 
+7.	The FRA codes are: 
+M  Main sub network
+I  Major Industrial Lead
+O  Other track (minor industrial leads)
+S  Passing sidings over 4000 feet long
+Y  Yard Tracks
+F  Rail ferry connection
+X  Out of service line
+A  Abandoned rail line
+R  Abandoned line that has been physically removed
+T  Trail on former rail right-of-way
+Z  Transit-only rail line or museum/tourist operation
